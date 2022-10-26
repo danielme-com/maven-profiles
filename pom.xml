@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.danielme</groupId>
+    <artifactId>profiles</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- <profiles>
+        <profile>
+            <id>desarrollo</id>
+            <activation> <activeByDefault>true</activeByDefault> </activation>
+            <properties>
+                <log.level>DEBUG</log.level>
+                <db.url>jdbc:mysql://localhost:3306/profiles</db.url>
+                <db.user>dev</db.user>
+                <db.password>devpassword</db.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>produccion</id>
+            <properties>
+                <log.level>INFO</log.level>
+                <db.url>jdbc:mysql://192.168.1.30:3306/profiles</db.url>
+                <db.user>pro</db.user>
+                <db.password>45fgU23</db.password>
+            </properties>
+        </profile>
+    </profiles>-->
+
+    <profiles>
+        <profile>
+            <id>desarrollo</id>
+            <!-- <activation> <activeByDefault>true</activeByDefault> </activation> -->
+            <properties>
+                <profile.dir>src/main/profiles/desarrollo</profile.dir>
+            </properties>
+        </profile>
+        <profile>
+            <id>pruebas</id>
+            <properties>
+                <profile.dir>src/main/profiles/pruebas</profile.dir>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <!--<resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>${profile.dir}</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+</project>
